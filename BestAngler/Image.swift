@@ -7,3 +7,26 @@
 //
 
 import Foundation
+import UIKit
+
+class Image {
+    var image :UIImage!
+    var x: Double
+    var y: Double
+    var z: Double
+    
+    
+    
+    init(image:UIImage,x:Double,y:Double,z:Double){
+        self.image = image
+        self.x = x
+        self.y = y
+        self.z = z
+
+        }
+    
+     func changeAngle(x:Double,y:Double,z:Double) -> Void {
+     
+        
+      }
+    }
