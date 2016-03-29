@@ -15,18 +15,15 @@ class Image {
     var y: Double
     var z: Double
     
-    
-    
-    init(image:UIImage,x:Double,y:Double,z:Double){
+    init(image:UIImage!,x:Double,y:Double,z:Double){
         self.image = image
         self.x = x
         self.y = y
         self.z = z
-
-        }
+    }
     
-     func changeAngle(x:Double,y:Double,z:Double) -> Void {
+    func changeAngle(x:Double,y:Double,z:Double) -> Void {
      
         
-      }
     }
+}
