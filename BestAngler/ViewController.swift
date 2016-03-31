@@ -11,19 +11,24 @@ import CoreMotion
 
 class ViewController: UIViewController,UIImagePickerControllerDelegate ,UINavigationControllerDelegate{
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var checkView: UIView!
 
     var count: Int! = 0
     var myMotionManager: CMMotionManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkView.layer.cornerRadius = self.checkView.layer.bounds.width/2
+        checkView.clipsToBounds = true
+
     
     }
         override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func cameraButton(sender: AnyObject) {setUpCamera()
+    @IBAction func cameraButton(sender: AnyObject) {
+        setUpCamera()
     }
     private func setUpCamera(){
        
@@ -41,7 +46,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate ,UINaviga
             
             }
     }
-    
+    //写真が保存された時
     func imagePickerController(imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -62,8 +67,9 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate ,UINaviga
                 let returnPic = Image(image: pickedImage, x: data!.acceleration.x, y: data!.acceleration.y, z: data!.acceleration.z)
                 self.imageView.image = returnPic.image
                 self.myMotionManager.stopAccelerometerUpdates()
-                
-                print("x=\(data!.acceleration.x * 180 / M_PI),y=\(data!.acceleration.y * 180 / M_PI):z=\(data!.acceleration.z * 180 / M_PI)")
+                self.setUpLayout((data?.acceleration.x)!, y: (data?.acceleration.y)! , z: (data?.acceleration.z)!)
+    
+                print("x=\(round(data!.acceleration.x * 180 / M_PI)),y=\(round(data!.acceleration.y * 180 / M_PI)):z=\(round(data!.acceleration.z * 180 / M_PI))")
             })
             
             
@@ -73,15 +79,35 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate ,UINaviga
         print("Tap the [Save] to save a picture")
         
     }
+    @IBAction func picSaved(sender: AnyObject) {
+        let image:UIImage! = imageView.image
+        
+        if image != nil {
+            UIImageWriteToSavedPhotosAlbum(image, self, "image:didFinishSavingWithError:contextInfo:", nil)
+        }else{
+            print("error")
+        }
     }
+    
     //撮影がキャンセルされた時に呼び出される
         func imagePickerControllerDidCancel(picker: UIImagePickerController) {
             picker.dismissViewControllerAnimated(true, completion: nil)
             
         }
-    
+    //ユーザに判別
+    private func setUpLayout(x: Double , y: Double ,z:Double){
+        checkView.layer.cornerRadius = self.checkView.layer.bounds.width/2
+        checkView.clipsToBounds = true
+        
+        //のちに考える」
+            if y > 45.00 && y < 55.00 {
+            self.checkView.backgroundColor? = UIColor.redColor()
+            }else{
+                return
+        }
+    }
 
-
+}
 
 
 

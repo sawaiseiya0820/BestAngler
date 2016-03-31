@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -20,7 +21,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-lN-Ldq">
                                 <rect key="frame" x="51" y="106" width="304" height="294"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMW-d8-glJ">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kb-hi-HYW">
+                                <rect key="frame" x="188" y="543" width="30" height="30"/>
+                                <state key="normal" title="保存"/>
+                                <connections>
+                                    <action selector="picSaved:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4yB-Bn-gEg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMW-d8-glJ">
                                 <rect key="frame" x="153" y="473" width="101" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="Button"/>
@@ -28,11 +36,22 @@
                                     <action selector="cameraButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XKA-tV-G5K"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ulv-b8-3ay">
+                                <rect key="frame" x="20" y="44" width="10" height="10"/>
+                                <color key="backgroundColor" red="0.031372549020000001" green="0.98039215690000003" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3kb-hi-HYW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="168" id="0cf-5f-MFj"/>
+                            <constraint firstItem="3kb-hi-HYW" firstAttribute="top" secondItem="nMW-d8-glJ" secondAttribute="bottom" constant="29" id="B7c-g7-5UD"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3kb-hi-HYW" secondAttribute="bottom" constant="94" id="MnQ-oB-K5Q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3kb-hi-HYW" secondAttribute="trailing" constant="137" id="YkL-Us-e48"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="checkView" destination="ulv-b8-3ay" id="LvW-16-Au8"/>
                         <outlet property="imageView" destination="MD9-lN-Ldq" id="maK-63-knb"/>
                     </connections>
                 </viewController>
